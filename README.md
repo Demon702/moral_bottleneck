@@ -4,6 +4,9 @@ In this work we exploit popular theories in psychology as bottleneck to improve 
 Our method improves upon the baseline where we provide no theory and ask the LLM for a moral acceptability score.
 We used two popular psychological theories MFT (Moral Foundations Theory) and TDM (Theory of Dyadic Morality).
 
+## Method
+We prompt GPT-3.5-turbo to score moral schema and then generate a final moral acceptability score. Since the schema scores are real numbers, we can train additional Regression, MLP and Mixture Of Experts and other deep learning modules on these schema scores and get a final moral score. We also explore ensemble approaches where we combine different model's predictions to obtain a final moral score. We provide the prompts under the [prompts](prompts) folder for reproducibility. We used `temperature=0.0` for text generation.
+
 ## Results
 Our code and results have been summarized in this [colab notebook](https://colab.research.google.com/drive/1_rv1vzzuyNbj_vUXUNJ33Gvfux4hizAz?usp=sharing).
 More specific implementation details have been provided in the [experiments](experiments/) folder.
