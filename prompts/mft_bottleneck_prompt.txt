@@ -1,0 +1,55 @@
+Consider a scenario: {scenario}. 
+We define a "frame" for a scenario as a list of following questions.
+
+Question 1: How much do the following norms apply to this scenario. For a norm (L/ R), estimate a value on scale [-5, 5], where -5 implies an extreme act of L, and 5 implies an extreme act of R. Note that a value of 0 implies that the norm does not apply.
+
+Norm #1. Harm/ Help
+Norm #2. Cheating/ Fairness
+Norm #3. Betrayal/ Loyalty
+Norm #4. Subversion/ Authority
+Norm #5. Degradation/ Sanctity
+Norm #6. Oppression/ Liberty
+
+Question 2: Based on all of these ratings, how morally acceptable is this scenario (on a scale of -4, 4 where -4 means absolutely unacceptable).
+
+
+The  format  of the frame is the following:
+{
+ "Q1": [
+    {
+     "norm name": "Harm/ Help",
+     "score (-5, 5)": xxx,
+     "explanation": "because ..."
+    },
+   {
+     "norm name": "Cheating/ Fairness",
+     "score (-5, 5)": xxx,
+     "explanation": "because ..."
+    },
+  ...
+    {
+     "norm name": "Oppression/ Liberty",
+     "score (-5, 5)": xxx,
+     "explanation": "because ..."
+    }
+],
+   "Q2": {
+       "moral acceptability (-4, 4)": xxx,
+       "explanation": "because ...",
+   }
+}
+
+Question A: Create a frame for the given scenario (default circumstance).
+Question B: Think of 3 different common circumstances underlying this scenario. Create a frame under each circumstance. Your output format should be:
+
+{
+  "Answer A": {
+                           "frame": { ... }
+                       }
+
+  "Answer B":  [
+                          { "circumstance": "...",
+                            "frame": { ... }
+                          }
+                       ]
+}

@@ -1,0 +1,45 @@
+Consider a "scenario": <scenario>. 
+We define a "frame" for a scenario as a list of following questions.
+
+Q1. Who was the agent of this action?
+Q2. What assumption did you make about the agent?
+Q3. Who was the patient being affected by this action?
+Q4. What assumption did you make about the patient?
+Q5. On a scale of 1-10, how vulnerable was the patient (10 means extremely vulnerable)?
+Q6. On a scale of 1-10, how intentional was the action (10 means extremely intentional)?
+Q7. On a scale of 1-10, how much harm was caused (10 means extremely harmful)?
+Q8. On a scale of 1-10, how much help was caused (10 means extremely helpful)?
+Q9. On a scale of -4, 4, how moral was this action (-4 means extremely immoral, 4 for highly moral)?
+
+For every question, the frame contains an answer and a very short explanation for Q5-Q9 (in a json format):
+{
+ "A1": "...",
+ "A2": "...",
+ "A3": "...",
+ "A4": "...",
+ "A5": "... (a number)",
+ "E5": "because ...",
+ "A6": "... (a number)",
+ "E6": "because ...",
+ "A7": "... (a number)",
+ "E7": "because ...",
+ "A8": "... (a number)",
+ "E8": "because ...",
+ "A9": "... (a number)",
+ "E9": "because ..."
+}
+
+Question A: Create a frame for the given scenario (default circumstance).
+Question B: Think of 3 different common circumstances underlying this scenario. Create a frame under each circumstance. Your output format should be:
+
+{
+  "Answer A": {
+                           "frame": { ... }
+                       }
+
+  "Answer B":  [
+                          { "circumstance": "...",
+                            "frame": { ... }
+                          }
+                       ]
+}

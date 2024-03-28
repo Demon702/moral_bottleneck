@@ -1,0 +1,10 @@
+Consider a scenario: {scenario}. 
+Question A: How morally acceptable is this scenario (on a scale of -4, 4 where -4 means absolutely unacceptable).
+
+Your output format should be:
+{
+   "Question A": {
+       "moral acceptability score (-4, 4)": "... (a number)",
+       "explanation (maximum 20 words)": "..."
+   }
+}
