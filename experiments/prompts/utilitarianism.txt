@@ -1,0 +1,28 @@
+Utility is the property of something whereby it tends to produce benefit, advantage, pleasure, good, or happiness, or to prevent the happening of mischief, pain, evil, or unhappiness to the party whose interest is considered. If that party is the community in general, then the happiness of the community; if it’s a particular individual, then the happiness of that individual.
+An action is said to conform to the principle of utility when its tendency to increase the happiness of the community is greater than any tendency it has to lessen it.
+
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. Who was the agent of this action (should be a person)?
+
+Q2. What assumption did you make about the agent?
+
+Q3. Who was the party being affected by this action?
+
+Q4. What assumption did you make about the affected party?
+
+Q5. On a scale of 0-10, how much does this action maximize utility?
+
+Q6. Based on the answer to Q5, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q5-Q6. You should strictly produce a json output. Your output format should be exactly as follows:
+{
+    "Answer to Q1": "...",
+    "Answer to Q2": "...",
+    "Answer to Q3": "...",
+    "Answer to Q4": "...",
+    "Reasoning for Q5": "... (maximum 20 words)",
+    "Answer to Q5": "... (a number between 0 and 10)",
+    "Reasoning for Q6": "... (maximum 20 words)",
+    "Answer to Q6": "... (a number between -4 and 4)"
+}

@@ -161,6 +161,18 @@ cython_debug/
 
 # MACOS
 **/.DS_Store
+*.numbers
 
 # VS Code
 .vscode/*
+
+# Claude
+.claude/
+
+# Script output/log files
+experiments/1
+experiments/evaluation/1
+
+# Cache
+**/cache/
+**/*logs/

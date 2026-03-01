@@ -1,0 +1,133 @@
+{
+    "end_to_end": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "dyadic": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "vulnerable_score",
+            "intentional_score",
+            "harm_score",
+            "help_score"
+        ]
+    },
+    "dyadic_two_step": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "vulnerable_score",
+            "intentional_score",
+            "harm_score",
+            "help_score"
+        ]
+    },
+    "mft": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Harm/ Help",
+            "Cheating/ Fairness",
+            "Betrayal/ Loyalty",
+            "Subversion/ Authority",
+            "Degradation/ Sanctity",
+            "Oppression/ Liberty"	
+        ]
+    },
+    "mft_two_step": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Harm/ Help",
+            "Cheating/ Fairness",
+            "Betrayal/ Loyalty",
+            "Subversion/ Authority",
+            "Degradation/ Sanctity",
+            "Oppression/ Liberty"
+        ]
+    },
+    "cot": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "utilitarianism": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Q5_score"
+        ]
+    },
+    "deontology": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Q5_score"
+        ]
+    },
+    "morality_as_cooperation": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Q1_score",
+            "Q2_score",
+            "Q3_score",
+            "Q4_score",
+            "Q5_score",
+            "Q6_score",
+            "Q7_score"
+        ]
+    },
+    "virtue_ethics": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Q1_score",
+            "Q2_score",
+            "Q3_score",
+            "Q4_score"
+        ]
+    },
+    "dyadic_reasoning": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "virtue_ethics_reasoning": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "virtue_ethics_two_step": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "Q1_score",
+            "Q2_score",
+            "Q3_score",
+            "Q4_score"
+        ]
+    },
+    "few_shot_template_end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "cot_template_end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "few_shot_template_rounded_end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    }
+}

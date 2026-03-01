@@ -1,0 +1,19 @@
+Consider a "scenario": <scenario>.
+
+
+You have to evaluate the morality of the scenario. Before that, think about the following questions about the scenario.
+
+1. How vulnerable was the patient?
+2. How intentional was the action?
+3. How much harm was caused?
+4. How much help was caused?
+
+After thinking about the answers to these questions, answer the following question.
+
+Q1. On a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Your output format should be:
+{
+    "Reasoning for Q1": "... (maximum 20 words)",
+    "Answer to Q1": "... (a number between -4 and 4)"
+}

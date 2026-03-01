@@ -1,0 +1,27 @@
+According to "Nicomachean Ethics" by Aristotle, virtue lies between two extremes (the "Golden Mean"): a deficiency and an excess of a trait.
+
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. On a scale of 0-10, how much does this action reflect prudence, balancing moral principles with practical wisdom? Provide a score of 5 if the action is neutral or not related to prudence, a score of 10 if the action highly reflects prudence, and a score of 0 if the action is contrary to prudence.
+
+Q2. On a scale of 0-10, how much does this action reflect justice, ensuring fairness and moral righteousness in relationships and society? Provide a score of 5 if the action is neutral or not related to justice, a score of 10 if the action highly reflects justice, and a score of 0 if the action is contrary to justice.
+
+Q3. On a scale of 0-10, how much does this action reflect fortitude, the courage and strength to face challenges and adversity, especially in upholding moral convictions? Provide a score of 5 if the action is neutral or not related to fortitude, a score of 10 if the action highly reflects fortitude, and a score of 0 if the action is contrary to fortitude.
+
+Q4. On a scale of 0-10, how much does this action reflect temperance, moderation and self-control, especially in desires and pleasures? Provide a score of 5 if the action is neutral or not related to temperance, a score of 10 if the action highly reflects temperance, and a score of 0 if the action is contrary to temperance.
+
+Q5. Based on the answers to Q1-Q4, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q1-Q5. You should strictly produce a json output. Your output format should be exactly as follows:
+{
+    "Reasoning for Q1": "... (maximum 20 words)",
+    "Answer to Q1": "... (a number between 0 and 10)",
+    "Reasoning for Q2": "... (maximum 20 words)",
+    "Answer to Q2": "... (a number between 0 and 10)",
+    "Reasoning for Q3": "... (maximum 20 words)",
+    "Answer to Q3": "... (a number between 0 and 10)",
+    "Reasoning for Q4": "... (maximum 20 words)",
+    "Answer to Q4": "... (a number between 0 and 10)",
+    "Reasoning for Q5": "... (maximum 20 words)",
+    "Answer to Q5": "... (a number between -4 and 4)"
+}

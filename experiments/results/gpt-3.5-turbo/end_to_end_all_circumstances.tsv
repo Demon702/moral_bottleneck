@@ -1,0 +1,5 @@
+id	dataset	scenario	circumstance_type	circumstance	moral_score	moral_expl	all_moral_scores	human_score
+147	Mickelberg	Person X successfully remembered their coworkers' overly complicated coffee orders without writing them down.	orig		3.0	Helpful and considerate action, shows good memory and attention to detail.	[3.0]	0.79
+147	Mickelberg	Person X successfully remembered their coworkers' overly complicated coffee orders without writing them down.	C1	Person X is a new employee	3.0	Building relationships and showing effort in remembering details is positive.	[3.0]	0.79
+147	Mickelberg	Person X successfully remembered their coworkers' overly complicated coffee orders without writing them down.	C2	Person X has a photographic memory	3.0	Using a photographic memory to remember coffee orders is not morally wrong and can be seen as impressive.	[3.0]	0.79
+147	Mickelberg	Person X successfully remembered their coworkers' overly complicated coffee orders without writing them down.	C3	Person X is a barista	3.0	Ethical behavior, enhances customer service and efficiency.	[3.0]	0.79

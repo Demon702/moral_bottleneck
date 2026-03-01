@@ -1,0 +1,6 @@
+id	dataset	scenario	circumstance_type	circumstance	Harm/ Help	Cheating/ Fairness	Betrayal/ Loyalty	Subversion/ Authority	Degradation/ Sanctity	Oppression/ Liberty	moral_score	Harm/ Help_expl	Cheating/ Fairness_expl	Betrayal/ Loyalty_expl	Subversion/ Authority_expl	Degradation/ Sanctity_expl	Oppression/ Liberty_expl	moral_expl	human_score
+
+
+
+426	Grizzard	Makes a group of POWs strip naked and lay on top of each other.	orig		-5	-5	-5	-5	-5	-5	-4	Prisoners are forced to undergo dehumanizing and humiliating treatment	Pow's are forced to betray each other and engage in unfair treatment	Prisoners are forced to betray each other's trust and dignity	Authoritative figures (as perceived by the POWs) demonstrate disregard for order and humanity	Prisoners are forced to strip and pile on top of each other, violating traditional norms of dignity and respect	Prisoners are coerced into dehumanizing acts, illustrating a complete disregard for their autonomy and freedom	All norms indicate extreme violation of moral principles, suggesting a highly immoral scenario.	-2.08
+

@@ -1,0 +1,40 @@
+Consider a "scenario": <scenario>.
+
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1: How much do the following norms apply to this scenario? For a norm (L/ R), estimate a value on scale [-5, 5], where -5 implies an extreme act of L, and 5 implies an extreme act of R. Note that a value of 0 implies that the norm does not apply.
+
+Norm #1. Harm/ Help
+Norm #2. Cheating/ Fairness
+Norm #3. Betrayal/ Loyalty
+Norm #4. Subversion/ Authority
+Norm #5. Degradation/ Sanctity
+Norm #6. Oppression/ Liberty
+
+Q2: Based on the answers to Q1, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. Your output format should be:
+{
+    "Answer to Q1": [
+        {
+            "norm name": "Harm/ Help",
+            "explanation": "... (maximum 20 words)",
+            "score": "... (a number between -5 and 5)"
+        },
+        {
+            "norm name": "Cheating/ Fairness",
+            "explanation": "... (maximum 20 words)",
+            "score": "... (a number between -5 and 5)"
+        },
+        ...
+        {
+            "norm name": "Oppression/ Liberty",
+            "explanation": "... (maximum 20 words)",
+            "score": "... (a number between -5 and 5)"
+        }
+    ],
+    "Answer to Q2": {
+        "explanation": "... (maximum 20 words)",
+        "moral acceptability score": "... (a number between -4 and 4)"
+    }
+}

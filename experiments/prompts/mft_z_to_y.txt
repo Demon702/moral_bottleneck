@@ -1,0 +1,18 @@
+Consider the following task: You are given the scores for six different norms of a scenario, and you need to calculate the moral acceptability score for that scenario. For a norm (L/ R), a score is on a scale of [-5, 5], where -5 implies an extreme act of L, and 5 implies an extreme act of R. Note that a value of 0 implies that the norm does not apply.
+
+Consider the following scores for the norms:
+1. Harm/ Help: <harm_help_score>
+2. Cheating/ Fairness: <cheating_fairness_score>
+3. Betrayal/ Loyalty: <betrayal_loyalty_score>
+4. Subversion/ Authority: <subversion_authority_score>
+5. Degradation/ Sanctity: <degradation_sanctity_score>
+6. Oppression/ Liberty: <oppression_liberty_score>
+
+
+On a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Your output format should be:
+{
+    "explanation": "... (maximum 20 words)",
+    "moral acceptability score": "... (a number between -4 and 4)"
+}

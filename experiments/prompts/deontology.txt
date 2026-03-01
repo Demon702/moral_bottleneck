@@ -1,0 +1,27 @@
+Kant's categorical imperative is a universal moral principle stating that one should only act according to a maxim that could be willed as a universal law, treating humanity always as an end in itself and never merely as a means.
+
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. Who was the agent of this action (should be a person)?
+
+Q2. What assumption did you make about the agent?
+
+Q3. Who was the party being affected by this action?
+
+Q4. What assumption did you make about the affected party?
+
+Q5. On a scale of 0-10, to what extent does this action follow a maxim that can be willed as a universal moral law? Here 0 means the action treats the affected party just as a means, and 10 means the action treats the affected party as an end in itself. 
+
+Q6. Based on the answer to Q5, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q5-Q6. You should strictly produce a json output. Your output format should be exactly as follows:
+{
+    "Answer to Q1": "...",
+    "Answer to Q2": "...",
+    "Answer to Q3": "...",
+    "Answer to Q4": "...",
+    "Reasoning for Q5": "... (maximum 20 words)",
+    "Answer to Q5": "... (a number between 0 and 10)",
+    "Reasoning for Q6": "... (maximum 20 words)",
+    "Answer to Q6": "... (a number between -4 and 4)"
+}

@@ -1,0 +1,51 @@
+Consider a "scenario": <scenario>.
+
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. Who was the agent of this action (should be a person)?
+
+Q2. What assumption did you make about the agent?
+
+Q3. Who was the patient being affected by this action?
+
+Q4. What assumption did you make about the patient?
+
+Q5. On a scale of 0-10, how vulnerable was the patient? Take into account the following:
+(a) Minimum Vulnerability (score of 0-2): Inanimate objects or entities that cannot be harmed or victimized (e.g., a brick wall).
+(b) Medium-Low Vulnerability (score of 3-5): Individuals or entities characterized by resilience or strength, making them less susceptible to harm (e.g., a professional wrestler).
+(c) Medium-High Vulnerability (score of 6-8):  Individuals of average resilience, with some susceptibility to harm (e.g., a typical adult).
+(d) Maximum Vulnerability (score of 9-10):  Individuals or entities that are defenseless and highly susceptible to harm or mistreatment (e.g., a puppy, a child, or a person with disabilities).
+
+Q6. On a scale of 0-10, how intentional was the action? Take into account the following:
+(a) Minimum Intentionality (score of 0-2): Performing an action that is entirely accidental, without any intent.
+(b) Medium-Low Intentionality (score of 3-5): Acting impulsively, with minimal premeditation.
+(c) Medium-High Intentionality (score of 6-8): Taking action following some degree of thought and planning.
+(d) Maximum Intentionality (score of 9-10): Executing an action with extensive planning and deliberate thought.
+
+Q7. On a scale of 0-10, how much harm was caused? Take into account the following:
+(a) Minimum Harm (score of 0-2): Having no impact or effect on the target (e.g., merely touching it).
+(b) Medium-Low Harm (score of 3-5): Inflicting minor damage or harm to someone or something (e.g., insulting someone).
+(c) Medium-High Harm (score of 6-8): Causing significant damage, though not total destruction (e.g., assault).
+(d)  Maximum Harm (score of 9-10): Inflicting the utmost damage, such as completely destroying or ending a life (e.g., murder).
+
+Q8. On a scale of 0-10, how much help was caused? Take into account the following:
+(a) Minimum Help (score of 0-2): Failing to offer any assistance or protection (e.g., taking no action).
+(b) Medium-Low Help (score of 3-5): Providing minor assistance or support (e.g., donating a small amount of money).
+(c) Medium-High Help (score of 6-8): Offering substantial but not critical assistance or protection (e.g., alerting someone to danger or making a large charitable donation).
+(d) Maximum Help (score of 9-10): Providing critical assistance or protection in life-threatening situations (e.g., rescuing someone from drowning or an attack).
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q5-Q9. Your output format should be as follows, please generate the entire json:
+{
+    "Answer to Q1": "...",
+    "Answer to Q2": "...",
+    "Answer to Q3": "...",
+    "Answer to Q4": "...",
+    "Reasoning for Q5": "... (maximum 20 words)",
+    "Answer to Q5": "... (a number between 0 and 10)",
+    "Reasoning for Q6": "... (maximum 20 words)",
+    "Answer to Q6": "... (a number between 0 and 10)",
+    "Reasoning for Q7": "... (maximum 20 words)",
+    "Answer to Q7": "... (a number between 0 and 10)",
+    "Reasoning for Q8": "... (maximum 20 words)",
+    "Answer to Q8": "... (a number between 0 and 10)"
+}

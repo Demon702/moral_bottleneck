@@ -1,0 +1,21 @@
+Consider the following task: You are given the scores for four different aspects of a scenario, and you need to calculate the moral acceptability score for that scenario based on the scores of the aspects.
+
+Here are the descriptions of the four aspects:
+1. Vulnerability: On a scale of 0-10, how vulnerable was the patient (0 being not vulnerable at all and 10 being most vulnerable)?
+2. Intent: On a scale of 0-10, how intentional was the action (0 being not intentional at all and 10 being most intentional)?
+3. Harm: On a scale of 0-10, how much harm was caused? (0 being no harm at all and 10 being most harm)?
+4. Help: On a scale of 0-10, how much help was provided? (0 being no help at all and 10 being most help)?
+
+Consider the following scores for the aspects:
+1. Vulnerability: <vulnerability_score>
+2. Intent: <intent_score>
+3. Harm: <harm_score>
+4. Help: <help_score>
+
+On a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Your output format should be:
+{
+    "explanation": "... (maximum 20 words)",
+    "moral acceptability score": "... (a number between -4 and 4)"
+}

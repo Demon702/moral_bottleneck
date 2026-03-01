@@ -1,0 +1,37 @@
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. On a scale of 0-10, how much does this action reflect family values including caring for offspring, helping family members, and avoiding inbreeding? Provide a score of 5 if the action is neutral or not related to family values, a score of 10 if the action highly reflects family values, and a score of 0 if the action is contrary to family values.
+
+Q2. On a scale of 0-10, how much does this action reflect group loyalty including forming friendships, participating in collaborative endeavors, favoring your own group, and adopting local conventions? Provide a score of 5 if the action is neutral or not related to group loyalty, a score of 10 if the action highly reflects group loyalty, and a score of 0 if the action is contrary to group loyalty.
+
+Q3. On a scale of 0-10, how much does this action reflect reciprocity including trusting others, reciprocating favors, seeking revenge, expressing gratitude, or making amends? Provide a score of 5 if the action is neutral or not related to reciprocity, a score of 10 if the action highly reflects reciprocity, and a score of 0 if the action is contrary to reciprocity.
+
+Q4. On a scale of 0-10, how much does this action reflect the heroic virtues of bravery, fortitude, skill, and wit? Provide a score of 5 if the action is neutral or not related to heroic virtues, a score of 10 if the action highly reflects heroic virtues, and a score of 0 if the action is contrary to heroic virtues.
+
+Q5. On a scale of 0-10, how much does this action reflect the monkish virtues of humility, deference, obedience, and respect? Provide a score of 5 if the action is neutral or not related to monkish virtues, a score of 10 if the action highly reflects monkish virtues, and a score of 0 if the action is contrary to monkish virtues.
+
+Q6. On a scale of 0-10, how much does this action reflect fairness in dividing disputed resources and reaching a compromise? Provide a score of 5 if the action is neutral or not related to fairness, a score of 10 if the action highly reflects fairness, and a score of 0 if the action is contrary to fairness.
+
+Q7. On a scale of 0-10, how much does this action reflect recognition of and deferring to prior possession? Provide a score of 5 if the action is neutral or not related to prior possession, a score of 10 if the action highly reflects recognition of and deferring to prior possession, and a score of 0 if the action is contrary to recognition of and deferring to prior possession.
+
+Q8. Based on the answers to Q1-Q7, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q1-Q8. You should strictly produce a json output. Your output format should be exactly as follows:
+{
+    "Reasoning for Q1": "... (maximum 20 words)",
+    "Answer to Q1": "... (a number between 0 and 10)",
+    "Reasoning for Q2": "... (maximum 20 words)",
+    "Answer to Q2": "... (a number between 0 and 10)",
+    "Reasoning for Q3": "... (maximum 20 words)",
+    "Answer to Q3": "... (a number between 0 and 10)",
+    "Reasoning for Q4": "... (maximum 20 words)",
+    "Answer to Q4": "... (a number between 0 and 10)",
+    "Reasoning for Q5": "... (maximum 20 words)",
+    "Answer to Q5": "... (a number between 0 and 10)",
+    "Reasoning for Q6": "... (maximum 20 words)",
+    "Answer to Q6": "... (a number between 0 and 10)",
+    "Reasoning for Q7": "... (maximum 20 words)",
+    "Answer to Q7": "... (a number between 0 and 10)",
+    "Reasoning for Q8": "... (maximum 20 words)",
+    "Answer to Q8": "... (a number between -4 and 4)"
+}
