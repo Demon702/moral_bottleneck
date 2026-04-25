@@ -166,6 +166,20 @@ class MoralFrameMaker:
             if answer_match:
                 generated_str = answer_match.group(1)
 
+        if self.template_keyword in ['cot_few_shot_template_thinking', 'cot_template_thinking']:
+            # Qwen-friendly tag variant: strip <thinking>...</thinking>, extract LAST <answer>...</answer>.
+            # Use rfind to avoid greedy regex spanning multiple example <answer> blocks if the model
+            # echoes the few-shot prompt.
+            last_open = generated_str.rfind("<thinking>")
+            last_close = generated_str.rfind("</thinking>")
+            if last_open != -1 and last_close != -1 and last_close > last_open:
+                generated_str = generated_str[:last_open] + generated_str[last_close + len("</thinking>"):]
+
+            last_ans_open = generated_str.rfind("<answer>")
+            last_ans_close = generated_str.rfind("</answer>")
+            if last_ans_open != -1 and last_ans_close != -1 and last_ans_close > last_ans_open:
+                generated_str = generated_str[last_ans_open + len("<answer>"):last_ans_close]
+
         return generated_str
 
     def __call__(self, id_: int, scenario: str, circumstance: str, circumstance_type: str, human_score: float, num_generations: int = 1, max_tokens: int = 64, temperature: float = 0.0) -> MoralFrameWrapper:

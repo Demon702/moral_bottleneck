@@ -12,10 +12,13 @@ moral_bottleneck/
 ├── experiments/
 │   ├── end_to_end.py                    # Direct baseline (no bottleneck)
 │   ├── dyadic_bottleneck.py             # Theory of Dyadic Morality bottleneck
+│   ├── cot_dyadic_bottleneck.py         # Dyadic + CoT (<thinking>...</thinking><answer>{...}</answer>)
+│   ├── cot_few_shot_dyadic_bottleneck.py # Dyadic + CoT + few-shot (template-driven)
 │   ├── mft_bottleneck.py                # Moral Foundations Theory bottleneck
 │   ├── moral_bottleneck.py              # Generic bottleneck (any theory)
 │   ├── prompt_variants_end_to_end.py    # Few-shot / CoT template variants
-│   ├── baseline_prompts/                # Prompt templates (basic, few-shot, CoT, CoT+few-shot)
+│   ├── baseline_prompts/                # Prompt templates (basic, few-shot, CoT, CoT+few-shot, *_thinking variants)
+│   ├── comparisons/cot_variants/        # Cross-model TSV bundle + summary.md (zip via comparisons/cot_variants.zip; gitignored)
 │   ├── prompts/                         # Theory-specific prompts (deontology, utilitarianism, etc.)
 │   ├── gptinference/                    # OpenAI API wrapper with JSONL caching
 │   ├── results/{model}/                 # Output TSVs per model and experiment
@@ -127,4 +130,14 @@ All API calls are cached in `experiments/cache/{model}/{experiment_type}.jsonl`.
 
 - OpenAI: `gpt-3.5-turbo`, `gpt-4o`, `o1`, `o3-mini`
 - Together AI: `meta/llama3-70b-instruct`, `mistralai/mixtral-8x22b-instruct-v0.1`, `deepseek-ai/DeepSeek-R1`
-- Qwen: `qwen3-thinking`, `qwen3-non-thinking`
+- Qwen: `Qwen/Qwen3-235B-A22B-Instruct-2507-tput` (serverless on Together; the `qwen3-thinking` alias points to a non-serverless dedicated-endpoint variant)
+
+## Qwen `<think>` collision (important)
+
+Qwen3-235B-Instruct-2507-tput silently breaks JSON formatting when the prompt uses `<think>...</think>` tags — the chat template appears to reserve `<think>` for hidden reasoning, so the model stops emitting the `<answer>{...}</answer>` block and outputs free-form prose instead (~64% parse failure rate observed). Workaround: use `<thinking>...</thinking>` instead. Affected scripts already do this:
+
+- `cot_dyadic_bottleneck.py` and `cot_few_shot_dyadic_bottleneck.py` — emit `<thinking>` natively.
+- `baseline_prompts/cot_template_thinking.txt` and `baseline_prompts/cot_few_shot_template_thinking.txt` — `<thinking>`-tag versions of the originals.
+- `prompt_variants_end_to_end.py` — `post_process_generation` recognizes the `cot_template_thinking` and `cot_few_shot_template_thinking` template keywords and uses `rfind`-based extraction (avoids greedy regex spanning multiple example `<answer>` blocks).
+
+gpt-4o handles either tag form correctly.

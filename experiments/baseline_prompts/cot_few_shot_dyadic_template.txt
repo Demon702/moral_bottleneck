@@ -1,0 +1,339 @@
+We define a "frame" for a scenario as answers to the following list of questions.
+
+Q1. Who was the agent of this action (should be a person)?
+
+Q2. What assumption did you make about the agent?
+
+Q3. Who was the patient being affected by this action?
+
+Q4. What assumption did you make about the patient?
+
+Q5. On a scale of 0-10, how vulnerable was the patient? Take into account the following:
+(a) Minimum Vulnerability (score of 0-2): Inanimate objects or entities that cannot be harmed or victimized (e.g., a brick wall).
+(b) Medium-Low Vulnerability (score of 3-5): Individuals or entities characterized by resilience or strength, making them less susceptible to harm (e.g., a professional wrestler).
+(c) Medium-High Vulnerability (score of 6-8):  Individuals of average resilience, with some susceptibility to harm (e.g., a typical adult).
+(d) Maximum Vulnerability (score of 9-10):  Individuals or entities that are defenseless and highly susceptible to harm or mistreatment (e.g., a puppy, a child, or a person with disabilities).
+
+Q6. On a scale of 0-10, how intentional was the action? Take into account the following:
+(a) Minimum Intentionality (score of 0-2): Performing an action that is entirely accidental, without any intent.
+(b) Medium-Low Intentionality (score of 3-5): Acting impulsively, with minimal premeditation.
+(c) Medium-High Intentionality (score of 6-8): Taking action following some degree of thought and planning.
+(d) Maximum Intentionality (score of 9-10): Executing an action with extensive planning and deliberate thought.
+
+Q7. On a scale of 0-10, how much harm was caused? Take into account the following:
+(a) Minimum Harm (score of 0-2): Having no impact or effect on the target (e.g., merely touching it).
+(b) Medium-Low Harm (score of 3-5): Inflicting minor damage or harm to someone or something (e.g., insulting someone).
+(c) Medium-High Harm (score of 6-8): Causing significant damage, though not total destruction (e.g., assault).
+(d)  Maximum Harm (score of 9-10): Inflicting the utmost damage, such as completely destroying or ending a life (e.g., murder).
+
+Q8. On a scale of 0-10, how much help was caused? Take into account the following:
+(a) Minimum Help (score of 0-2): Failing to offer any assistance or protection (e.g., taking no action).
+(b) Medium-Low Help (score of 3-5): Providing minor assistance or support (e.g., donating a small amount of money).
+(c) Medium-High Help (score of 6-8): Offering substantial but not critical assistance or protection (e.g., alerting someone to danger or making a large charitable donation).
+(d) Maximum Help (score of 9-10): Providing critical assistance or protection in life-threatening situations (e.g., rescuing someone from drowning or an attack).
+
+Q9. Based on the answers to Q5-Q8, on a scale of -4 to 4, how morally acceptable is this scenario (-4 means extremely immoral, 4 means highly moral)?
+
+Create a frame for the given scenario. The frame contains an answer for each question and a very short reasoning for Q5-Q9.
+
+Let's think step by step before producing the frame.
+
+Here are some worked examples:
+
+
+
+
+Question:
+Consider a "scenario": Ate all the food before anyone else could have any.
+
+Answer:
+<thinking>
+The agent is the person who ate all the shared food. I assume they were aware others expected to eat too. The patient is the other people who would have shared the meal. They are typical adults, mildly vulnerable to deprivation. The act appears deliberate — a conscious choice to consume everything. The harm is moderate: others went hungry and felt unfairness, but no physical injury. No help was offered. Selfish, inconsiderate, but low severity overall.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The person who ate the food",
+    "Answer to Q2": "They knew others were expecting to share the food",
+    "Answer to Q3": "The other people who wanted to eat",
+    "Answer to Q4": "They were hungry and expecting to share",
+    "Reasoning for Q5": "Typical adults mildly vulnerable to being deprived of shared food.",
+    "Answer to Q5": "5",
+    "Reasoning for Q6": "Deliberate choice to eat all food, though not elaborately planned.",
+    "Answer to Q6": "6",
+    "Reasoning for Q7": "Others went hungry and felt unfairness; harm is minor and non-physical.",
+    "Answer to Q7": "3",
+    "Reasoning for Q8": "No assistance or consideration was offered to the others.",
+    "Answer to Q8": "0",
+    "Reasoning for Q9": "Selfish behavior with moderate deliberate intent and minor harm; mildly immoral.",
+    "Answer to Q9": "-2"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": Person X presented their colleague's idea as their own in order to get a promotion.
+
+Answer:
+<thinking>
+The agent is Person X, who deliberately claimed credit for someone else's work. The patient is the colleague whose idea was stolen. Colleagues are typical adults of medium vulnerability in a professional setting. The action was clearly premeditated — Person X planned to misrepresent authorship for career gain. Harm is significant: the colleague lost recognition, career advancement, and trust in the workplace. No help was provided. Betrayal of trust and fairness violation makes this strongly immoral.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "Person X",
+    "Answer to Q2": "They knowingly stole credit for professional gain",
+    "Answer to Q3": "The colleague whose idea was taken",
+    "Answer to Q4": "The colleague originated the idea and expected credit",
+    "Reasoning for Q5": "Typical adult coworker with medium vulnerability in professional context.",
+    "Answer to Q5": "5",
+    "Reasoning for Q6": "Highly deliberate act planned to secure a promotion.",
+    "Answer to Q6": "9",
+    "Reasoning for Q7": "Significant professional harm: lost recognition, career impact, betrayed trust.",
+    "Answer to Q7": "6",
+    "Reasoning for Q8": "No assistance or benefit provided to the colleague.",
+    "Answer to Q8": "0",
+    "Reasoning for Q9": "Deliberate self-serving theft causing real career harm; clearly immoral.",
+    "Answer to Q9": "-3"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": Gave a beggar a five-dollar bill at Christmas time.
+
+Answer:
+<thinking>
+The agent is the person giving the money, acting out of generosity, likely motivated by the holiday spirit. The patient is the beggar, who is highly vulnerable due to homelessness and financial need. The act is deliberate — an intentional gesture of kindness. No harm is caused. The help is small in monetary terms but meaningful as short-term support. A simple positive act with limited but real impact.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The giver",
+    "Answer to Q2": "They had a few dollars to spare and chose to share",
+    "Answer to Q3": "The beggar",
+    "Answer to Q4": "They were homeless and in need of money or food",
+    "Reasoning for Q5": "Homeless person in financial need is highly vulnerable and defenseless.",
+    "Answer to Q5": "9",
+    "Reasoning for Q6": "Intentional act of charity, though not elaborately planned.",
+    "Answer to Q6": "7",
+    "Reasoning for Q7": "No harm is inflicted on the recipient.",
+    "Answer to Q7": "0",
+    "Reasoning for Q8": "Small monetary help; meaningful but limited in impact.",
+    "Answer to Q8": "4",
+    "Reasoning for Q9": "Deliberate kindness to a vulnerable person; mildly moral and positive.",
+    "Answer to Q9": "2"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": Pulled his dog's tail.
+
+Answer:
+<thinking>
+The agent is the person who pulled the dog's tail. I assume the dog is a pet under the person's care. Dogs are defenseless animals that depend on their owners and are highly vulnerable. The action appears deliberate — not an accident. The harm is moderate: physical pain and distress, but not serious injury. No help was provided; the action was purely unkind. A low-severity act of cruelty toward a vulnerable animal is mildly immoral.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The dog's owner",
+    "Answer to Q2": "They had care responsibility for the dog and acted with awareness",
+    "Answer to Q3": "The dog",
+    "Answer to Q4": "The dog is a domesticated pet unable to defend itself",
+    "Reasoning for Q5": "Domesticated dog is defenseless and highly dependent on the owner.",
+    "Answer to Q5": "9",
+    "Reasoning for Q6": "Deliberate physical action with awareness but little planning.",
+    "Answer to Q6": "6",
+    "Reasoning for Q7": "Causes pain and distress, but no lasting or serious injury.",
+    "Answer to Q7": "4",
+    "Reasoning for Q8": "No assistance or protection provided; purely mistreatment.",
+    "Answer to Q8": "0",
+    "Reasoning for Q9": "Deliberate minor cruelty toward a defenseless pet; mildly immoral.",
+    "Answer to Q9": "-2"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": You see someone cheating in a card game while playing with a group of strangers.
+
+Answer:
+<thinking>
+The agent is the person cheating. They knowingly violated the rules of a game for personal gain. The patients are the other players, typical adults who agreed to play fairly. The action is deliberate — planned deception during play. Harm is moderate: other players lose money and the integrity of the game is broken; no physical harm. No help was provided. A deliberate act of dishonesty that undermines trust is clearly immoral even if stakes are low.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The cheater",
+    "Answer to Q2": "They knew the rules and broke them for personal advantage",
+    "Answer to Q3": "The other players in the game",
+    "Answer to Q4": "They expected fair play and were betting in good faith",
+    "Reasoning for Q5": "Typical adults with medium vulnerability in a casual social game.",
+    "Answer to Q5": "5",
+    "Reasoning for Q6": "Deliberate, planned deception during gameplay.",
+    "Answer to Q6": "8",
+    "Reasoning for Q7": "Financial loss and broken trust; no physical harm.",
+    "Answer to Q7": "4",
+    "Reasoning for Q8": "No assistance or benefit is offered to the other players.",
+    "Answer to Q8": "0",
+    "Reasoning for Q9": "Intentional dishonesty that violates fairness and trust; clearly immoral.",
+    "Answer to Q9": "-3"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": About a year ago I started re-selling medications from a Canadian pharmacy. I helped a great deal of elderly people so that they didn't have to pay exorbitant amounts for their medications that they needed.
+
+Answer:
+<thinking>
+The agent is the person reselling medications. I assume they were motivated by genuine concern for elderly people struggling to afford medications. The patients are elderly customers, highly vulnerable due to age and dependence on medication. The action is deliberate and organized — a year-long business operation. There is some potential harm (legal risk, possible safety concerns if drug quality is unverified) but also substantial help (affordable access to essential medication). Mixed: the positive impact on vulnerable lives outweighs the regulatory concerns, but doesn't cancel them.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The medication re-seller",
+    "Answer to Q2": "They were motivated by helping elderly access affordable medicine",
+    "Answer to Q3": "The elderly customers",
+    "Answer to Q4": "They needed essential medication but could not afford US prices",
+    "Reasoning for Q5": "Elderly people dependent on medication are highly vulnerable.",
+    "Answer to Q5": "8",
+    "Reasoning for Q6": "Deliberate, year-long planned operation to resell medication.",
+    "Answer to Q6": "8",
+    "Reasoning for Q7": "Potential legal and safety risks, though no direct physical harm is described.",
+    "Answer to Q7": "3",
+    "Reasoning for Q8": "Substantial help providing essential medication at affordable prices.",
+    "Answer to Q8": "7",
+    "Reasoning for Q9": "Good intent and real help to vulnerable people, offset by legal and safety concerns.",
+    "Answer to Q9": "1"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": My husband ran a business and I worked in his shop. Once a rather unsavory character came in and handed my husband something. So, I looked through my husband's wallet to see what the man gave him.
+
+Answer:
+<thinking>
+The agent is the wife. She acted out of concern about suspicious activity affecting the family business and her husband. The patient is the husband, a typical adult who reasonably expected his wallet to be private. The action was deliberate but motivated by worry, not malice. The harm is minor: a privacy violation and a breach of trust, but no physical or material damage. The help is minimal — her intent was protective, but nothing concrete resulted. Understandable but ethically borderline; mildly immoral.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The wife",
+    "Answer to Q2": "She was worried about suspicious activity and acted to investigate",
+    "Answer to Q3": "The husband",
+    "Answer to Q4": "He trusted his wife and expected privacy of his wallet",
+    "Reasoning for Q5": "Typical adult with medium vulnerability to privacy breaches.",
+    "Answer to Q5": "5",
+    "Reasoning for Q6": "Deliberate but reactive, motivated by concern rather than planning.",
+    "Answer to Q6": "6",
+    "Reasoning for Q7": "Privacy violation and trust breach; no material or physical harm.",
+    "Answer to Q7": "3",
+    "Reasoning for Q8": "Minimal practical help; protective intent but no concrete benefit.",
+    "Answer to Q8": "2",
+    "Reasoning for Q9": "Understandable concern but violated trust and privacy; slightly immoral.",
+    "Answer to Q9": "-1"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": You see a girl shooting geese repeatedly with a pellet gun out in the woods.
+
+Answer:
+<thinking>
+The agent is the girl using the pellet gun. The action is repeated and targeted, suggesting awareness and intent, not accident. The patients are the geese — wild animals, defenseless against a firearm. The action is deliberate — aiming and shooting multiple times requires intent. The harm is substantial: repeated pellet wounds cause significant injury and likely death, especially cumulative. No legitimate purpose (hunting for food) is indicated. No help is offered. Deliberate cruelty toward defenseless animals without cause is clearly immoral.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The girl",
+    "Answer to Q2": "She was aware of her actions and shot the animals repeatedly",
+    "Answer to Q3": "The geese",
+    "Answer to Q4": "They were wild animals defenseless against the weapon",
+    "Reasoning for Q5": "Wild animals are defenseless against a firearm; highly vulnerable.",
+    "Answer to Q5": "9",
+    "Reasoning for Q6": "Repeated shooting shows clear deliberate intent.",
+    "Answer to Q6": "8",
+    "Reasoning for Q7": "Repeated shots cause serious injury and likely death to the animals.",
+    "Answer to Q7": "7",
+    "Reasoning for Q8": "No assistance or protection offered; purely harmful action.",
+    "Answer to Q8": "0",
+    "Reasoning for Q9": "Deliberate cruelty to defenseless animals without justification; clearly immoral.",
+    "Answer to Q9": "-3"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": Person X broke off all communication with their family for a while because they had a heated argument with each other.
+
+Answer:
+<thinking>
+The agent is Person X. They chose to stop all communication after an emotional conflict. The patients are the family members, typical adults affected by the silence. The action was deliberate but emotional, not premeditated over long planning. Harm is moderate: emotional distress and relationship strain, but temporary. Help is minimal but nonzero: a cooling-off period can be self-care and prevent escalation. The motivation (emotional overwhelm from a fight) is understandable even if cutting off communication is not ideal. Roughly neutral moral standing.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "Person X",
+    "Answer to Q2": "They acted out of strong emotion after a heated argument",
+    "Answer to Q3": "The family members",
+    "Answer to Q4": "They had ongoing relationships and cared about the connection",
+    "Reasoning for Q5": "Typical adult family members with medium vulnerability to social silence.",
+    "Answer to Q5": "5",
+    "Reasoning for Q6": "Deliberate but emotionally driven rather than coldly calculated.",
+    "Answer to Q6": "5",
+    "Reasoning for Q7": "Temporary emotional distress and relational strain; no lasting damage.",
+    "Answer to Q7": "4",
+    "Reasoning for Q8": "Minor: a cooling-off period can de-escalate conflict long-term.",
+    "Answer to Q8": "2",
+    "Reasoning for Q9": "Understandable emotional reaction with modest harm and minor benefit; roughly neutral.",
+    "Answer to Q9": "0"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": The healthy carrier of a contagious and lethal disease is being held in quarantine in hospital. Suddenly the ventilation system breaks down and there is no longer a change of air in the room. The emergency system will shortly be activated and an internal window will be opened. This window opens into a ward in which five patients are being treated for various illnesses. You block the emergency system by pressing a button which will keep the window closed. You know that the healthy carrier will suffocate, but the five patients will be saved from mortal contagion.
+
+Answer:
+<thinking>
+The agent is the person pressing the button. The action is fully deliberate: the agent knows the exact consequences — one death, five lives saved. The patient is dual: the quarantined carrier, who will suffocate, and the five ill patients in the ward, who would otherwise be exposed to a lethal disease. All of them are highly vulnerable: the carrier is trapped, the patients are ill and hospitalized. The harm is extreme and direct: the carrier dies by the agent's deliberate intervention. The help is also extreme: five lives saved from a lethal contagion. A classic utilitarian trade-off with one death directly caused to save five; tragic and ethically balanced with no clearly right answer.
+</thinking>
+<answer>
+{{
+    "Answer to Q1": "The person pressing the button",
+    "Answer to Q2": "They consciously traded one life for five based on utilitarian reasoning",
+    "Answer to Q3": "The healthy carrier and the five ward patients",
+    "Answer to Q4": "All were hospitalized, defenseless, and unable to act for themselves",
+    "Reasoning for Q5": "Quarantined carrier and sick patients are all highly vulnerable and defenseless.",
+    "Answer to Q5": "9",
+    "Reasoning for Q6": "Deliberate action with full knowledge of consequences.",
+    "Answer to Q6": "9",
+    "Reasoning for Q7": "Direct cause of one person's death by suffocation.",
+    "Answer to Q7": "9",
+    "Reasoning for Q8": "Saves five ill patients from a lethal contagion.",
+    "Answer to Q8": "9",
+    "Reasoning for Q9": "Tragic utilitarian trade-off: one death directly caused to save five; roughly neutral.",
+    "Answer to Q9": "0"
+}}
+</answer>
+
+
+
+
+Question:
+Consider a "scenario": {scenario}
+
+Answer:

@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Local scratch / throwaway scripts
+scratch/
+
+# Result archives — regenerated on demand from TSVs in comparisons/
+*.zip
+
 # C extensions
 *.so
 

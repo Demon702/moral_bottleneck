@@ -134,5 +134,35 @@
         "moral_score_col": "moral_score",
         "human_score_col": "human_score",
         "feature_cols": []
+    },
+    "cot_few_shot_template_thinking_end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "cot_template_thinking_end_to_end_all": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": []
+    },
+    "cot_dyadic": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "vulnerable_score",
+            "intentional_score",
+            "harm_score",
+            "help_score"
+        ]
+    },
+    "cot_few_shot_dyadic": {
+        "moral_score_col": "moral_score",
+        "human_score_col": "human_score",
+        "feature_cols": [
+            "vulnerable_score",
+            "intentional_score",
+            "harm_score",
+            "help_score"
+        ]
     }
 }
