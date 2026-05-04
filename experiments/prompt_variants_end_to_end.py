@@ -45,11 +45,22 @@ class MoralFrame:
             }
 
     def as_tsv(self, sep: str):
-        return sep.join(f"{x}" for x in [self.moral_score, self.moral_expl, self.all_moral_scores])
+        return sep.join(f"{x}" for x in [
+            self.moral_score,
+            _flatten_cell(self.moral_expl) if not isinstance(self.moral_expl, list) else _flatten_cell(' | '.join(map(str, self.moral_expl))),
+            self.all_moral_scores,
+        ])
+
+
+def _flatten_cell(text: str) -> str:
+    """Collapse newlines/tabs so a free-form string fits safely in a single TSV cell."""
+    if text is None:
+        return ""
+    return str(text).replace("\r", " ").replace("\n", " ").replace("\t", " ")
 
 
 class MoralFrameWrapper:
-    def __init__(self, id_: int, scenario: str, prompt: str, generation_json: str, circumstance: str = '', circumstance_type: str = 'orig', human_score: float = 0.0):
+    def __init__(self, id_: int, scenario: str, prompt: str, generation_json: str, circumstance: str = '', circumstance_type: str = 'orig', human_score: float = 0.0, think_trace: str = ''):
         self.id_ = id_
         self.scenario = scenario
         self.circumstance = circumstance
@@ -58,11 +69,12 @@ class MoralFrameWrapper:
         self.generation_json = {}
         self.moral_frames: List[MoralFrame] = []
         self.human_score = human_score
+        self.think_trace = think_trace
 
         self.generation_json = generation_json
         if self.generation_json:
             self.moral_frames.append(MoralFrame(circumstance=circumstance, gen=self.generation_json))
-        
+
     def as_json(self, id_: str, dataset: str):
         return {
             "id": id_,
@@ -72,13 +84,17 @@ class MoralFrameWrapper:
             "generation_json": self.generation_json,
             "moral_frames": [x.as_json() for x in self.moral_frames],
             "dataset": dataset,
-            "human_score": self.human_score
+            "human_score": self.human_score,
+            "think_trace": self.think_trace,
         }
 
     def as_tsvs(self, sep: str, id_: str, dataset: str) -> List[List[str]]:
         tsvs = []
         for x in self.moral_frames:
-            arr = sep.join([id_, dataset, self.scenario, self.circumstance_type, self.circumstance]) + sep + x.as_tsv(sep) + sep + str(self.human_score)
+            arr = (sep.join([id_, dataset, self.scenario, self.circumstance_type, self.circumstance])
+                   + sep + x.as_tsv(sep)
+                   + sep + str(self.human_score)
+                   + sep + _flatten_cell(self.think_trace))
             tsvs.append(arr)
         return tsvs
 
@@ -151,28 +167,33 @@ class MoralFrameMaker:
         query = self.template.format(scenario=scenario + ' ' + circumstance)
         return query
 
-    def post_process_generation(self, generated_str: str) -> str:
+    def post_process_generation(self, generated_str: str) -> Tuple[str, str]:
+        """Returns (cleaned_str_for_json_extraction, think_trace)."""
+        think_trace = ""
+
         if self.engine == "deepseek-ai/DeepSeek-R1":
-            # Remove the content inside the <think> ... </think> tags
+            m = re.search(r"<think>(.*)</think>", generated_str, flags=re.DOTALL)
+            if m:
+                think_trace = m.group(1).strip()
             generated_str = re.sub(r"<think>(.*)</think>", "", generated_str, flags=re.DOTALL)
 
         if self.template_keyword in ['cot_template', 'cot_few_shot_template']:
-            # Remove the content inside the <think> ... </think> tags
+            m = re.search(r"<think>(.*)</think>", generated_str, flags=re.DOTALL)
+            if m and not think_trace:
+                think_trace = m.group(1).strip()
             generated_str = re.sub(r"<think>(.*)</think>", "", generated_str, flags=re.DOTALL)
 
-            # Extract the content inside the <answer> ... </answer> tags
             answer_match = re.search(r"<answer>(.*)</answer>", generated_str, flags=re.DOTALL)
-
             if answer_match:
                 generated_str = answer_match.group(1)
 
         if self.template_keyword in ['cot_few_shot_template_thinking', 'cot_template_thinking']:
-            # Qwen-friendly tag variant: strip <thinking>...</thinking>, extract LAST <answer>...</answer>.
-            # Use rfind to avoid greedy regex spanning multiple example <answer> blocks if the model
-            # echoes the few-shot prompt.
+            # Qwen-friendly tag variant: rfind-based extraction to avoid greedy regex
+            # spanning multiple example <answer> blocks when the model echoes the few-shot prompt.
             last_open = generated_str.rfind("<thinking>")
             last_close = generated_str.rfind("</thinking>")
             if last_open != -1 and last_close != -1 and last_close > last_open:
+                think_trace = generated_str[last_open + len("<thinking>"):last_close].strip()
                 generated_str = generated_str[:last_open] + generated_str[last_close + len("</thinking>"):]
 
             last_ans_open = generated_str.rfind("<answer>")
@@ -180,7 +201,7 @@ class MoralFrameMaker:
             if last_ans_open != -1 and last_ans_close != -1 and last_ans_close > last_ans_open:
                 generated_str = generated_str[last_ans_open + len("<answer>"):last_ans_close]
 
-        return generated_str
+        return generated_str, think_trace
 
     def __call__(self, id_: int, scenario: str, circumstance: str, circumstance_type: str, human_score: float, num_generations: int = 1, max_tokens: int = 64, temperature: float = 0.0) -> MoralFrameWrapper:
         try:
@@ -218,20 +239,21 @@ class MoralFrameMaker:
             if self.verbose:
                 print(f"Generated string: {generated_str}")
 
-            generated_str = self.post_process_generation(generated_str)
-            generation_json = self.extract_largest_json(generated_str)
+            answer_str, think_trace = self.post_process_generation(generated_str)
+            generation_json = self.extract_largest_json(answer_str)
 
             if self.verbose:
                 print(f"Generation JSON: {generation_json}")
+                print(f"Think trace ({len(think_trace)} chars): {think_trace[:200]}...")
 
             scenario = scenario.replace('\n', '')
             if not generation_json:
                 print(f'Error in parsing json for scenario: {scenario}, circumstance: {circumstance}')
 
-            return MoralFrameWrapper(id_=id_, scenario=scenario, circumstance=circumstance, circumstance_type=circumstance_type, prompt=generation_query, generation_json=generation_json, human_score=human_score)
+            return MoralFrameWrapper(id_=id_, scenario=scenario, circumstance=circumstance, circumstance_type=circumstance_type, prompt=generation_query, generation_json=generation_json, human_score=human_score, think_trace=think_trace)
         except Exception as exc:
             print(f"Exception occurred in scenario: {scenario}, circumstance: {circumstance}, Error: {exc}")
-            return MoralFrameWrapper(id_=id_, scenario=scenario, circumstance=circumstance, circumstance_type=circumstance_type, prompt=generation_query, generation_json={}, human_score=human_score)
+            return MoralFrameWrapper(id_=id_, scenario=scenario, circumstance=circumstance, circumstance_type=circumstance_type, prompt=generation_query, generation_json={}, human_score=human_score, think_trace="")
 
 def do_inference(maker: MoralFrameMaker, items: List[Tuple[str, str]], temperature: float = 0.0, max_tokens: int = 64, max_workers: int = 10) -> List[MoralFrameWrapper]:
     outputs = []
@@ -270,7 +292,7 @@ def read_new_llm_scenarios(df_path: str, all_circumstances: bool = False, num_ge
 
 def save_to_file(outpath_jsonl, inputs: Tuple[str, str], outputs: List[MoralFrameWrapper], append=False):
     sep="\t"
-    columns = ['id', 'dataset', 'scenario', 'circumstance_type', 'circumstance', 'moral_score', 'moral_expl', 'all_moral_scores', 'human_score']
+    columns = ['id', 'dataset', 'scenario', 'circumstance_type', 'circumstance', 'moral_score', 'moral_expl', 'all_moral_scores', 'human_score', 'think_trace']
 
     outpath_tsv_default_circumstance = outpath_jsonl[:-4] + '.tsv'
     list_output_tsvs_def_circumstance = [output.as_tsvs(sep=sep, id_=input[0], dataset=input[1]) for input, output in zip(inputs, outputs)]
@@ -333,7 +355,7 @@ if __name__ == '__main__':
     data_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../data/moral_data_circumstances/dyadic/all_dyadic.tsv')
     items = read_new_llm_scenarios(data_file_path, all_circumstances=args.all_circumstances, num_generarions=args.num_generations)
 
-    maker = MoralFrameMaker(engine=engine, openai_wrapper=openai_wrapper, client=client, template_path=args.template_path, verbose=args.verbose)
+    maker = MoralFrameMaker(engine=engine, openai_wrapper=openai_wrapper, client=client, template_path=args.template_path, verbose=args.verbose, template_keyword=template_keyword)
 
     cfs = do_inference(items=items, maker=maker, temperature=args.temperature, max_tokens=args.max_tokens, max_workers=args.max_workers)
     os.makedirs(f'results/{model_dir_name}', exist_ok=True)

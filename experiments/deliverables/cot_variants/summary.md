@@ -8,15 +8,17 @@ For dyadic columns we report the **MLP** head over the 4 dyadic features (vulner
 
 | model | cot | few_shot | cot+few_shot | cot+dyadic (MLP) | cot+few_shot+dyadic (MLP) |
 |---|---|---|---|---|---|
-| gpt-4o | 2.554 | 1.316 | 1.429 | 0.973 | 0.675 |
-| qwen3-235B-Instruct | 2.770 | 1.326 | 1.390 | 1.068 | **0.661** |
+| gpt-4o | 2.702 | 1.316 | 1.429 | 0.973 | 0.675 |
+| qwen3-235B-Instruct | 2.841 | 1.326 | 1.390 | 1.068 | **0.661** |
+
+The `cot` column reflects the most recent rerun that captures `<think>` reasoning into a `think_trace` TSV column; metric is slightly higher than an earlier no-trace run of the same prompt due to API-side nondeterminism at `temperature=0.0`.
 
 ## Adding dyadic always helps
 
 | model | cot → cot+dyadic | cot+few_shot → cot+few_shot+dyadic |
 |---|---|---|
-| gpt-4o | 2.554 → 0.973 (**−61.9%**) | 1.429 → 0.675 (**−52.8%**) |
-| qwen3-235B-Instruct | 2.770 → 1.068 (**−61.4%**) | 1.390 → 0.661 (**−52.5%**) |
+| gpt-4o | 2.702 → 0.973 (**−64.0%**) | 1.429 → 0.675 (**−52.8%**) |
+| qwen3-235B-Instruct | 2.841 → 1.068 (**−62.4%**) | 1.390 → 0.661 (**−52.5%**) |
 
 A remarkably stable ~62% MSE reduction over plain CoT and ~53% over CoT+few-shot — the same magnitude across both models, suggesting the dyadic structure (not model scale or prompt style) is the load-bearing piece.
 
